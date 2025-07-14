@@ -1,0 +1,17 @@
+sudo apt install bc bison flex libssl-dev make
+cd linux
+KERNEL=kernel_2712
+make bcm2712_defconfig
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2712_defconfig
+
+cross
+sudo apt install bc bison flex libssl-dev make libc6-dev libncurses5-dev
+sudo apt install crossbuild-essential-arm64
+
+build
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+
+config
+sudo apt install libncurses5-dev
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
+
